@@ -86,7 +86,7 @@ adomány, jótékonyság, éhező gyermekek, gyermekéhezés, ételadomány, seg
   </div>
 
   <script>
-    const stripe = Stripe("YOUR_PUBLISHABLE_KEY_HERE");
+    const stripe = Stripe("pk_live_51S0zyXDyLtejYlZixEqmlIwnOSQ4yxGGvR2i5eulXNtmKnpeAIgXETXm3FNm8E4XSgeSnyeWboG5CHWJnLccnagx004MPoq1n1");
 
     async function donate(amount) {
       const resp = await fetch("/api/create-checkout-session", {
