@@ -59,5 +59,22 @@ adomány, jótékonyság, éhező gyermekek, gyermekéhezés, ételadomány, seg
       stripe.redirectToCheckout({ sessionId: data.id });
     }
   </script>
+ <script>
+// Function to show a simple thank-you message
+function showThankYouMessage() {
+  const overlay = document.querySelector(".overlay");
+  overlay.innerHTML = `
+    <h1>Thank You! 🎉</h1>
+    <p>Your donation helps feed hungry children worldwide.</p>
+    <p>You’ve made a difference today! ❤️</p>
+    <a href="/">← Back to Home</a>
+  `;
+}
+
+// Example: you can call this after the user clicks a donation button
+// Uncomment the next line if you want it to appear automatically after button click
+// showThankYouMessage();
+</script>
+ 
 </body>
 </html>
