@@ -6,7 +6,7 @@
   <title>Donate to Feed Hungry Children – 1€ = 1 Meal</title>
   <meta name="description" content="Help feed hungry children worldwide. Donate 1€, 2€, or 5€ to provide a full meal. Your contribution saves lives and makes a lasting difference.">
   <meta name="keywords" content="
-donation, charity, feed children, hungry children, child hunger, help, donate, child support, food aid, hunger relief,
+donation, charity, feed children, hungry children, child hunger, help, donate, child support, food aid,
 Spende, Wohltätigkeit, Kinder ernähren, hungrige Kinder, Kinderhunger, spenden, Kinderhilfe, Essenshilfe,
 donazione, beneficenza, nutrire i bambini, bambini affamati, fame infantile, donare, aiuto alimentare,
 adomány, jótékonyság, éhező gyermekek, gyermekéhezés, ételadomány, segítség, ételosztás
@@ -14,52 +14,14 @@ adomány, jótékonyság, éhező gyermekek, gyermekéhezés, ételadomány, seg
   <meta name="author" content="1€ Meal Campaign">
   <script src="https://js.stripe.com/v3/"></script>
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background: url("/background.jpg") no-repeat center center/cover;
-      color: #000;
-      text-align: center;
-    }
-    .overlay {
-      background: rgba(255, 255, 255, 0.8);
-      padding: 40px;
-      border-radius: 12px;
-      margin: 60px auto;
-      max-width: 640px;
-    }
-    h1 {
-      font-size: 2.2em;
-      margin-bottom: 20px;
-    }
-    p {
-      font-size: 1.1em;
-      margin-bottom: 25px;
-      line-height: 1.4;
-    }
-    .donate-buttons {
-      margin: 20px 0;
-    }
-    button {
-      background: #ff9800;
-      border: none;
-      padding: 14px 28px;
-      margin: 8px;
-      font-size: 18px;
-      color: white;
-      cursor: pointer;
-      border-radius: 8px;
-      font-weight: bold;
-    }
-    button:hover {
-      background: #e68900;
-    }
-    .footer {
-      margin-top: 40px;
-      font-size: 0.9em;
-      color: #333;
-    }
+    body { margin:0; padding:0; font-family: Arial, sans-serif; background: url("/background.jpg") no-repeat center center/cover; color:#000; text-align:center; }
+    .overlay { background: rgba(255, 255, 255, 0.8); padding: 40px; border-radius:12px; margin:60px auto; max-width:640px; }
+    h1 { font-size:2.2em; margin-bottom:20px; }
+    p { font-size:1.1em; margin-bottom:25px; line-height:1.4; }
+    .donate-buttons { margin:20px 0; }
+    button { background:#ff9800; border:none; padding:14px 28px; margin:8px; font-size:18px; color:white; cursor:pointer; border-radius:8px; font-weight:bold; }
+    button:hover { background:#e68900; }
+    .footer { margin-top:40px; font-size:0.9em; color:#333; }
   </style>
 </head>
 <body>
@@ -80,12 +42,11 @@ adomány, jótékonyság, éhező gyermekek, gyermekéhezés, ételadomány, seg
     <p><strong>Already helped <span id="meals-count">4,357</span> meals</strong><br>
        Donations go directly to feeding hungry children worldwide</p>
 
-    <div class="footer">
-      © 2025 1 € Meal Campaign. All rights reserved.
-    </div>
+    <div class="footer">© 2025 1 € Meal Campaign. All rights reserved.</div>
   </div>
 
   <script>
+    // Ide másold a saját Publishable Key-edet a Stripe Dashboardból
     const stripe = Stripe("pk_live_51S0zyXDyLtejYlZixEqmlIwnOSQ4yxGGvR2i5eulXNtmKnpeAIgXETXm3FNm8E4XSgeSnyeWboG5CHWJnLccnagx004MPoq1n1");
 
     async function donate(amount) {
