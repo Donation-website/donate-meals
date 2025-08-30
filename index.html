@@ -3,10 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Donate to Feed Hungry Children – 1€ = 1 Meal</title>
-  <meta name="description" content="Help feed hungry children worldwide. Donate 1€, 2€, or 5€ to provide a full meal. Your contribution saves lives and makes a lasting difference.">
-  <meta name="keywords" content="donation, charity, feed children, hungry children, child hunger, help, donate, child support, food aid">
-  <meta name="author" content="1€ Meal Campaign">
+  <title>Donate a Meal – Feed Children in Need</title>
+  <meta name="description" content="Donate just 1€ to provide a warm meal for hungry children. Every contribution makes a difference in fighting child hunger.">
+  <meta name="keywords" content="
+donate meal, feed children, child hunger, charity, food donation, support kids,
+spenden essen, kinder hilfe, wohltätigkeit, hunger bekämpfen, wohlfahrt,
+aiuto bambini, donazione pasti, fame nel mondo, beneficenza,
+étel adomány, gyermekéhezés, jótékonyság
+">
+  <meta name="author" content="Meal Donation Campaign">
+
+  <!-- Google site verification -->
+  <meta name="google-site-verification" content="pC3-wUryvHxOWDzsqq2iIxZzBAYIENcn4QZaUho_2sA" />
+
   <script src="https://js.stripe.com/v3/"></script>
   <style>
     body {
@@ -18,17 +27,27 @@
       text-align:center;
     }
     .overlay {
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.45);
       padding: 40px;
       border-radius:12px;
       margin:60px auto;
       max-width:640px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
     }
-    h1 { font-size:2.2em; margin-bottom:20px; }
-    p { font-size:1.1em; margin-bottom:25px; line-height:1.4; }
+    h1 {
+      font-size:2.2em;
+      margin-bottom:20px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+    p {
+      font-size:1.1em;
+      margin-bottom:25px;
+      line-height:1.4;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
     .donate-buttons { margin:20px 0; }
     button {
-      background:#ff9800;
+      background:#4caf50;
       border:none;
       padding:14px 28px;
       margin:8px;
@@ -37,18 +56,24 @@
       cursor:pointer;
       border-radius:8px;
       font-weight:bold;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
     }
-    button:hover { background:#e68900; }
-    .footer { margin-top:40px; font-size:0.9em; color:#333; }
+    button:hover { background:#43a047; }
+    .footer {
+      margin-top:40px;
+      font-size:0.9em;
+      color:#333;
+      text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+    }
   </style>
 </head>
 <body>
   <div class="overlay">
-    <h1>1 € = 1 Meal for a Hungry Child</h1>
+    <h1>Donate a Meal 🍲</h1>
     <p>
-      Every day, millions of children go to bed hungry.<br>
-      Your donation of 1 €, 2 €, or 5 € can provide a full meal to a child in need.<br>
-      Join us in the fight against child hunger and make a lasting difference.
+      Millions of children suffer from hunger every day.<br>
+      Your donation of just 1 € can provide a warm and nutritious meal.<br>
+      Together we can fight child hunger and bring hope to those in need.
     </p>
 
     <div class="donate-buttons">
@@ -57,10 +82,10 @@
       <button onclick="donate(5)">Donate 5 €</button>
     </div>
 
-    <p><strong>Already provided <span id="meals-count">4,357</span> meals</strong><br>
-       100% of donations go directly to feed hungry children worldwide.</p>
+    <p><strong>Over <span id="meals-count">12,845</span> meals already donated</strong><br>
+       Donations go directly to trusted child hunger relief programs</p>
 
-    <div class="footer">© 2025 1 € Meal Campaign. All rights reserved.</div>
+    <div class="footer">© 2025 Meal Donation Campaign. All rights reserved.</div>
   </div>
 
   <script>
