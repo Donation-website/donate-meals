@@ -1,7 +1,6 @@
 import Stripe from "stripe";
 
-// A Secret key-t a Vercel Environment Variables-ben állítottuk be
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+const stripe = new Stripe("sk_live_YOUR_SECRET_KEY"); // ide a saját secret key
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -26,14 +25,14 @@ export default async function handler(req, res) {
         quantity: 1,
       }],
       mode: "payment",
-      success_url: "https://donate-meals-2dn4mbchg-donation-websites-projects.vercel.app/success.html",
-      cancel_url: "https://donate-meals-2dn4mbchg-donation-websites-projects.vercel.app/cancel.html",
-      locale: "en"
+      success_url: "https://meal-campaign.vercel.app/success",
+      cancel_url: "https://meal-campaign.vercel.app/cancel",
+      locale: "hu"
     });
 
     res.status(200).json({ id: session.id });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: "Server error", message: err.message });
+    res.status(500).json({ error: "Server error" });
   }
 }
