@@ -1,6 +1,5 @@
 import Stripe from "stripe";
-
-const stripe = new Stripe("sk_live_YOUR_SECRET_KEY"); // ide a saját secret key
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY); // Secret key a Vercel környezeti változóból
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
