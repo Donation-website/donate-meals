@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- Google Site Verification -->
+  <meta name="google-site-verification" content="pC3-wUryvHxOWDzsqq2iIxZzBAYIENcn4QZaUho_2sA" />
+
   <title>Donate to Feed Hungry Children – 1€ = 1 Meal</title>
-  <meta name="description" content="Help feed hungry children worldwide. Donate 1€, 2€, or 5€ to provide a full meal. Your contribution saves lives.">
-  <meta name="keywords" content="donation, charity, feed children, hungry children, child hunger, help, donate, child support, food aid">
+  <meta name="description" content="Help feed hungry children worldwide. Donate 1€, 2€, or 5€ to provide a full meal. Your contribution saves lives and makes a lasting difference.">
+  <meta name="keywords" content="donation, charity, feed children, hungry children, meal, child hunger, help, donate, child support, food aid, Spende, Wohltätigkeit, Kinder ernähren, hungrige Kinder, Kinderhunger, helfen, spenden, Kinderhilfe, Essenshilfe, donazione, beneficenza, nutrire i bambini, bambini affamati, pasto, fame infantile, aiuto alimentare, adomány, jótékonyság, éhező gyermekek, gyermekéhezés, ételadomány, segítség, ételosztás">
   <meta name="author" content="1€ Meal Campaign">
+
   <script src="https://js.stripe.com/v3/"></script>
   <style>
-    body { margin:0; padding:0; font-family: Arial, sans-serif; background: url("/background.jpg") no-repeat center center/cover; color:#000; text-align:center; }
+    body {
+      margin:0; padding:0; font-family: Arial, sans-serif; 
+      background: url("/background.jpg") no-repeat center center/cover; color:#000; text-align:center;
+    }
     .overlay { background: rgba(255,255,255,0.75); padding:40px; border-radius:12px; margin:60px auto; max-width:640px; }
     h1 { font-size:2.2em; margin-bottom:20px; }
     p { font-size:1.1em; margin-bottom:25px; line-height:1.4; }
@@ -25,7 +33,7 @@
     <p>
       Every day, millions of children go to bed hungry.<br>
       Your donation of 1 €, 2 €, or 5 € can provide a full meal to a child in need.<br>
-      Help fight child hunger, support charity initiatives, and make a lasting difference.
+      Help fight child hunger, support charity initiatives, and make a lasting difference in a child's life.
     </p>
 
     <div class="donate-buttons">
@@ -41,7 +49,7 @@
   </div>
 
   <script>
-    // Frontend Stripe
+    // Ide másold a saját Stripe Publishable Key-edet
     const stripe = Stripe("pk_live_51S0zyXDyLtejYlZixEqmlIwnOSQ4yxGGvR2i5eulXNtmKnpeAIgXETXm3FNm8E4XSgeSnyeWboG5CHWJnLccnagx004MPoq1n1");
 
     async function donate(amount) {
