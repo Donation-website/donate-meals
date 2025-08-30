@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Donate to Feed Hungry Children – 1€ = 1 Meal</title>
 
-  <!-- Google Site Verification -->
+  <!-- Google Site Verification (meta tag) -->
   <meta name="google-site-verification" content="23f_TNxNmajWDFHGy1k9QfYck-Vg5g4E7PKL6xZUg58" />
 
   <meta name="description" content="Help feed hungry children worldwide. Donate 1€, 2€, or 5€ to provide a full meal. Your contribution saves lives and makes a lasting difference.">
@@ -49,8 +49,8 @@ adomány, jótékonyság, éhező gyermekek, gyermekéhezés, ételadomány, seg
       border-radius: 8px;
       font-weight: bold;
     }
-    button:hover { background: #e68900; }
-    .footer { margin-top: 40px; font-size: 0.9em; color: #333; }
+    button:hover { background:#e68900; }
+    .footer { margin-top:40px; font-size:0.9em; color:#333; }
   </style>
 </head>
 <body>
@@ -75,7 +75,6 @@ adomány, jótékonyság, éhező gyermekek, gyermekéhezés, ételadomány, seg
   </div>
 
   <script>
-    // Ide másold a saját Publishable Key-edet a Stripe Dashboardból
     const stripe = Stripe("pk_live_51S0zyXDyLtejYlZixEqmlIwnOSQ4yxGGvR2i5eulXNtmKnpeAIgXETXm3FNm8E4XSgeSnyeWboG5CHWJnLccnagx004MPoq1n1");
 
     async function donate(amount) {
