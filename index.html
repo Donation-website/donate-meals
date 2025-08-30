@@ -1,0 +1,79 @@
+<!doctype html>
+
+
+<div class="donate-buttons">
+<button onclick="donate(1)">Donate 1 €</button>
+<button onclick="donate(2)">Donate 2 €</button>
+<button onclick="donate(5)">Donate 5 €</button>
+</div>
+
+
+<p><strong>Already helped <span id="meals-count">4,357</span> meals</strong></p>
+
+
+<div class="footer">© 2025 1 € Meal Campaign. All rights reserved.</div>
+</div>
+
+
+<script>
+// Init Stripe on page load by fetching the publishable key from our small API endpoint
+let stripe = null;
+
+
+async function initStripe() {
+try {
+const resp = await fetch('/api/stripe-config');
+if (!resp.ok) throw new Error('Nem sikerült lekérni a konfigurációt');
+const cfg = await resp.json();
+if (!cfg.publishableKey) throw new Error('Nincs publishable key beállítva');
+stripe = Stripe(cfg.publishableKey);
+} catch (err) {
+console.error('Stripe init hiba', err);
+alert('Hiba: nem sikerült inicializálni a fizetést. Ellenőrizd a konzolt/logokat.');
+}
+}
+
+
+async function donate(amount) {
+if (!stripe) return alert('A Stripe nincs inicializálva.');
+
+
+// disable buttons to prevent double clicks
+document.querySelectorAll('.donate-buttons button').forEach(b => b.disabled = true);
+
+
+try {
+const resp = await fetch('/api/create-checkout-session', {
+method: 'POST',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify({ amount })
+});
+
+
+if (!resp.ok) {
+const err = await resp.json().catch(() => ({}));
+throw new Error(err.error || 'API hiba');
+}
+
+
+const data = await resp.json();
+if (!data.id) throw new Error('A szerver nem adott vissza session id-t');
+
+
+const result = await stripe.redirectToCheckout({ sessionId: data.id });
+if (result && result.error) {
+alert(result.error.message);
+}
+} catch (err) {
+console.error('Checkout error', err);
+alert('Hiba történt a fizetés indításakor: ' + err.message);
+} finally {
+document.querySelectorAll('.donate-buttons button').forEach(b => b.disabled = false);
+}
+}
+
+
+window.addEventListener('load', initStripe);
+</script>
+</body>
+</html>
