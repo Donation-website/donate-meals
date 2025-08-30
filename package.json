@@ -1,8 +1,11 @@
 {
-"name": "meal-campaign",
-"version": "1.0.0",
-"private": true,
-"dependencies": {
-"stripe": "^12.0.0"
-}
+  "name": "donation-website",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "vercel dev",
+    "dev": "vercel dev"
+  },
+  "dependencies": {
+    "stripe": "^12.0.0"
+  }
 }
