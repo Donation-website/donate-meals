@@ -3,18 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Donate a Meal – Feed Children in Need</title>
-  <meta name="description" content="Donate just 1€ to provide a warm meal for hungry children. Every contribution makes a difference in fighting child hunger.">
+  <title>Donate to Support Children Worldwide – Make a Difference</title>
+  <meta name="description" content="Help provide food, education, and healthcare to children in need. Donate 1€, 2€, or 5€ to change lives and create brighter futures.">
   <meta name="keywords" content="
-donate meal, feed children, child hunger, charity, food donation, support kids,
-spenden essen, kinder hilfe, wohltätigkeit, hunger bekämpfen, wohlfahrt,
-aiuto bambini, donazione pasti, fame nel mondo, beneficenza,
-étel adomány, gyermekéhezés, jótékonyság
+children, donate, charity, help kids, education, food, healthcare,
+spenden kinder, hilfe, wohltätigkeit, zukunft, schule, ernährung,
+donazione bambini, beneficenza, nutrire bambini, educazione,
+adomány, gyermekek, segítség, jótékonyság
 ">
-  <meta name="author" content="Meal Donation Campaign">
-
-  <!-- Google site verification -->
-  <meta name="google-site-verification" content="pC3-wUryvHxOWDzsqq2iIxZzBAYIENcn4QZaUho_2sA" />
+  <meta name="author" content="Children Support Campaign">
 
   <script src="https://js.stripe.com/v3/"></script>
   <style>
@@ -47,7 +44,7 @@ aiuto bambini, donazione pasti, fame nel mondo, beneficenza,
     }
     .donate-buttons { margin:20px 0; }
     button {
-      background:#4caf50;
+      background:#ff9800;
       border:none;
       padding:14px 28px;
       margin:8px;
@@ -58,34 +55,84 @@ aiuto bambini, donazione pasti, fame nel mondo, beneficenza,
       font-weight:bold;
       text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
     }
-    button:hover { background:#43a047; }
+    button:hover { background:#e68900; }
     .footer {
       margin-top:40px;
       font-size:0.9em;
       color:#333;
       text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
     }
+    /* Accordion style */
+    details {
+      margin: 20px 0;
+      padding: 15px;
+      background: rgba(255,255,255,0.7);
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: left;
+      cursor: pointer;
+    }
+    summary {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #333;
+      outline: none;
+    }
+    details[open] {
+      background: rgba(255,255,255,0.9);
+    }
+    details p {
+      margin: 10px 0 0;
+      line-height: 1.5;
+      color: #000;
+    }
   </style>
 </head>
 <body>
   <div class="overlay">
-    <h1>Donate a Meal 🍲</h1>
+    <h1>Support Children in Need 🌍🙂</h1>
     <p>
-      Millions of children suffer from hunger every day.<br>
-      Your donation of just 1 € can provide a warm and nutritious meal.<br>
-      Together we can fight child hunger and bring hope to those in need.
+      Millions of children around the world lack access to food, education, and healthcare.<br>
+      Your donation of 1 €, 2 €, or 5 € can provide meals, school supplies, and life-saving medical support.<br>
+      Together, we can create brighter futures and bring hope to the next generation.
     </p>
 
     <div class="donate-buttons">
-      <button onclick="donate(1)">Donate 1 €</button>
-      <button onclick="donate(2)">Donate 2 €</button>
-      <button onclick="donate(5)">Donate 5 €</button>
+      <button onclick="donate(1)">Donate 1 € 🙂</button>
+      <button onclick="donate(2)">Donate 2 € ❤️</button>
+      <button onclick="donate(5)">Donate 5 € 🌟</button>
     </div>
 
-    <p><strong>Over <span id="meals-count">12,845</span> meals already donated</strong><br>
-       Donations go directly to trusted child hunger relief programs</p>
+    <p><strong>Already helped <span id="meals-count">12,874</span> children 👧👦</strong><br>
+       Donations go directly to educational and humanitarian projects worldwide</p>
 
-    <div class="footer">© 2025 Meal Donation Campaign. All rights reserved.</div>
+    <!-- Accordion blocks -->
+    <details>
+      <summary>Our Mission 🎓🍎</summary>
+      <p>Since 2017, we have been committed to improving the lives of children everywhere. With a growing network of more than <strong>25,000 volunteers</strong> across 40 countries, we work tirelessly to provide education, nutrition, and care to those who need it most.</p>
+      <p>Thanks to our supporters, we have already reached <strong>over 1 million children worldwide</strong>, giving them the chance to attend school 🎒, enjoy proper meals 🍲, and receive vital healthcare services 🏥.</p>
+      <p>Our mission is simple: every child deserves a safe childhood, opportunities for growth, and hope for the future 🙂.</p>
+    </details>
+
+    <details>
+      <summary>How Donations Are Used 💝</summary>
+      <p>Your generosity makes life-changing projects possible. Here is how contributions are used:</p>
+      <p>🍲 45% provides food programs and daily meals for children.<br>
+         🎒 35% funds schools, books, and educational materials.<br>
+         🏥 20% supports medical care, vaccinations, and emergency relief.</p>
+      <p>Every euro counts. From building classrooms in rural villages to delivering warm meals in refugee camps, your support transforms lives 🌟.</p>
+    </details>
+
+    <details>
+      <summary>Trust & Security 🔒</summary>
+      <p>Your safety is our priority. This website is hosted on <strong>Vercel</strong>, a secure platform with strict policies ensuring that all campaigns follow reliable standards.</p>
+      <p>✔️ Secure payment via <strong>Stripe</strong> – one of the world’s most trusted payment providers.<br>
+         ✔️ Full SSL encryption – your data and transactions are always protected.<br>
+         ✔️ Verified campaigns – strict rules ensure transparency and trustworthiness.</p>
+      <p>When you support us, you can be confident that your contribution is handled with care and integrity 🙂.</p>
+    </details>
+
+    <div class="footer">© 2025 Children Support Campaign. All rights reserved.</div>
   </div>
 
   <script>
