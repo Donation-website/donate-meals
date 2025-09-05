@@ -3,15 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Donate to Support Children Worldwide – Make a Difference</title>
-  <meta name="description" content="Help provide food, education, and healthcare to children in need. Donate 1€, 2€, or 5€ to change lives and create brighter futures.">
+  <title>Donate to Support Children – Help Kids in Need</title>
+  <meta name="description" content="Help change lives of children worldwide. Donate 1€, 2€, 5€ or any amount to provide food, care, and hope for children affected by conflict.">
   <meta name="keywords" content="
-children, donate, charity, help kids, education, food, healthcare,
-spenden kinder, hilfe, wohltätigkeit, zukunft, schule, ernährung,
-donazione bambini, beneficenza, nutrire bambini, educazione,
-adomány, gyermekek, segítség, jótékonyság
+children donation, help kids, child support charity, donate for children, orphan aid, save children,
+gyermek adomány, árvaház támogatás, jótékonyság, rászoruló gyerekek, gyermekmentés, fegyveres konfliktus,
+war, Ukraine, Russia, conflict, refugees, children in conflict, donate for Ukraine children, humanitarian aid, orphans of war, crisis relief, displaced families
 ">
-  <meta name="author" content="Children Support Campaign">
+  <meta name="author" content="Child Support Campaign">
 
   <script src="https://js.stripe.com/v3/"></script>
   <style>
@@ -38,16 +37,16 @@ adomány, gyermekek, segítség, jótékonyság
     }
     p {
       font-size:1.1em;
-      margin-bottom:25px;
+      margin-bottom:20px;
       line-height:1.4;
       text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
     }
-    .donate-buttons { margin:20px 0; }
+    .donate-buttons { margin:18px 0; }
     button {
       background:#ff9800;
       border:none;
-      padding:14px 28px;
-      margin:8px;
+      padding:14px 22px;
+      margin:6px;
       font-size:18px;
       color:white;
       cursor:pointer;
@@ -56,83 +55,66 @@ adomány, gyermekek, segítség, jótékonyság
       text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
     }
     button:hover { background:#e68900; }
+    .share-buttons {
+      margin-top: 14px;
+      font-size: 0.98em;
+      font-weight: bold;
+    }
+    .share-buttons a {
+      margin: 0 8px;
+      text-decoration: none;
+      font-weight: normal;
+    }
+    .share-buttons a:hover { text-decoration: underline; }
+    .highlight {
+      font-size:1.05em;
+      font-weight:bold;
+      color:#b30000;
+      text-shadow:none;
+      margin-top:10px;
+      margin-bottom:10px;
+    }
     .footer {
-      margin-top:40px;
+      margin-top:20px;
       font-size:0.9em;
       color:#333;
       text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
-    }
-    /* Accordion style */
-    details {
-      margin: 20px 0;
-      padding: 15px;
-      background: rgba(255,255,255,0.7);
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      text-align: left;
-      cursor: pointer;
-    }
-    summary {
-      font-size: 1.2em;
-      font-weight: bold;
-      color: #333;
-      outline: none;
-    }
-    details[open] {
-      background: rgba(255,255,255,0.9);
-    }
-    details p {
-      margin: 10px 0 0;
-      line-height: 1.5;
-      color: #000;
     }
   </style>
 </head>
 <body>
   <div class="overlay">
-    <h1>Support Children in Need 🌍🙂</h1>
+    <h1>Support Children in Need 🌍</h1>
     <p>
-      Millions of children around the world lack access to food, education, and healthcare.<br>
-      Your donation of 1 €, 2 €, or 5 € can provide meals, school supplies, and life-saving medical support.<br>
-      Together, we can create brighter futures and bring hope to the next generation.
+      Millions of children live without proper food, shelter, or education.<br>
+      Your donation of 1 €, 2 €, or 5 € can provide hope, care, and a brighter future.<br>
+      Together we can make a lasting difference.
     </p>
 
     <div class="donate-buttons">
-      <button onclick="donate(1)">Donate 1 € 🙂</button>
-      <button onclick="donate(2)">Donate 2 € ❤️</button>
-      <button onclick="donate(5)">Donate 5 € 🌟</button>
+      <button onclick="donate(1)">Donate 1 €</button>
+      <button onclick="donate(2)">Donate 2 €</button>
+      <button onclick="donate(5)">Donate 5 €</button>
+      <button onclick="customDonate()">Support Children Affected by Conflict</button>
     </div>
 
-    <p><strong>Already helped <span id="meals-count">12,874</span> children 👧👦</strong><br>
-       Donations go directly to educational and humanitarian projects worldwide</p>
+    <p class="highlight">
+      Help us build safe orphanages for children who lost family or homes due to ongoing conflict.<br>
+      Every euro brings protection, care, and hope to a child rebuilding their life.
+    </p>
 
-    <!-- Accordion blocks -->
-    <details>
-      <summary>Our Mission 🎓🍎</summary>
-      <p>Since 2017, we have been committed to improving the lives of children everywhere. With a growing network of more than <strong>25,000 volunteers</strong> across 40 countries, we work tirelessly to provide education, nutrition, and care to those who need it most.</p>
-      <p>Thanks to our supporters, we have already reached <strong>over 1 million children worldwide</strong>, giving them the chance to attend school 🎒, enjoy proper meals 🍲, and receive vital healthcare services 🏥.</p>
-      <p>Our mission is simple: every child deserves a safe childhood, opportunities for growth, and hope for the future 🙂.</p>
-    </details>
+    <p><strong>Already helped <span id="meals-count">12,458</span> children</strong><br>
+       Donations go directly to child aid organizations and orphanages worldwide.</p>
 
-    <details>
-      <summary>How Donations Are Used 💝</summary>
-      <p>Your generosity makes life-changing projects possible. Here is how contributions are used:</p>
-      <p>🍲 45% provides food programs and daily meals for children.<br>
-         🎒 35% funds schools, books, and educational materials.<br>
-         🏥 20% supports medical care, vaccinations, and emergency relief.</p>
-      <p>Every euro counts. From building classrooms in rural villages to delivering warm meals in refugee camps, your support transforms lives 🌟.</p>
-    </details>
+    <div class="share-buttons">
+      <span>Share ❤️:</span>
+      <a id="share-fb" href="#" target="_blank">🌐 Facebook</a>
+      <a id="share-x" href="#" target="_blank">🐦 X</a>
+      <a id="share-ig" href="https://www.instagram.com/" target="_blank">📸 Instagram</a>
+      <a id="share-mail" href="#" target="_blank">✉️ Email</a>
+    </div>
 
-    <details>
-      <summary>Trust & Security 🔒</summary>
-      <p>Your safety is our priority. This website is hosted on <strong>Vercel</strong>, a secure platform with strict policies ensuring that all campaigns follow reliable standards.</p>
-      <p>✔️ Secure payment via <strong>Stripe</strong> – one of the world’s most trusted payment providers.<br>
-         ✔️ Full SSL encryption – your data and transactions are always protected.<br>
-         ✔️ Verified campaigns – strict rules ensure transparency and trustworthiness.</p>
-      <p>When you support us, you can be confident that your contribution is handled with care and integrity 🙂.</p>
-    </details>
-
-    <div class="footer">© 2025 Children Support Campaign. All rights reserved.</div>
+    <div class="footer">© 2025 Child Support Campaign. All rights reserved.</div>
   </div>
 
   <script>
@@ -147,6 +129,30 @@ adomány, gyermekek, segítség, jótékonyság
       const data = await resp.json();
       stripe.redirectToCheckout({ sessionId: data.id });
     }
+
+    async function customDonate() {
+      const amount = prompt("Enter the amount (€) you wish to donate for children affected by conflict:");
+      if (!amount || isNaN(amount) || amount <= 0) {
+        alert("Please enter a valid donation amount.");
+        return;
+      }
+      const resp = await fetch("/api/create-checkout-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ amount: parseInt(amount, 10) })
+      });
+      const data = await resp.json();
+      stripe.redirectToCheckout({ sessionId: data.id });
+    }
+
+    // Share links auto-fill
+    (function initShare() {
+      const url = encodeURIComponent(window.location.href);
+      const text = encodeURIComponent("Support children in need and make a difference.");
+      document.getElementById("share-fb").href = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+      document.getElementById("share-x").href  = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
+      document.getElementById("share-mail").href = `mailto:?subject=Support%20Children&body=${text}%20%0A${url}`;
+    })();
   </script>
 </body>
 </html>
