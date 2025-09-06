@@ -5,45 +5,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Donate to Support Children – Help Kids in Need</title>
 <meta name="description" content="Help change lives of children worldwide. Donate 1€, 2€, 5€ or any amount to provide food, care, and hope for children affected by conflict.">
-<meta name="keywords" content="
-children donation, help kids, child support charity, donate for children, orphan aid, save children,
+<meta name="keywords" content="children donation, help kids, child support charity, donate for children, orphan aid, save children,
 gyermek adomány, árvaház támogatás, jótékonyság, rászoruló gyerekek, gyermekmentés, fegyveres konfliktus,
 war, Ukraine, Russia, conflict, refugees, children in conflict, donate for Ukraine children, humanitarian aid, orphans of war, crisis relief, displaced families,
 news, news today, weather, football, music, movies, games, technology, health, travel, shopping,
 ニュース, 子供, 寄付, 教育, 食べ物, シェルター,
 enfants, don, aide aux enfants, kinder spenden, hilfe, wohltätigkeit,
-niños, donar, ayuda a niños, educación, comida, refugio
-">
+niños, donar, ayuda a niños, educación, comida, refugio">
 <meta name="author" content="Child Support Campaign">
 <meta name="robots" content="index, follow">
 <script src="https://js.stripe.com/v3/"></script>
 <style>
-body {
-  margin:0; padding:0; font-family:Arial,sans-serif;
-  background:url("/background.jpg") no-repeat center center/cover; color:#000; text-align:center;
-}
-.container {
-  background: rgba(255,255,255,0.55); padding:40px; border-radius:12px; margin:60px auto; max-width:640px; box-shadow:0 0 20px rgba(0,0,0,0.2);
-}
+body {margin:0;padding:0;font-family:Arial,sans-serif;background:url("/background.jpg") no-repeat center center/cover;color:#000;text-align:center;}
+.container {background: rgba(255,255,255,0.55); padding:40px; border-radius:12px; margin:60px auto; max-width:640px; box-shadow:0 0 20px rgba(0,0,0,0.2);}
 h1 {font-size:2.2em;margin-bottom:10px;text-shadow:1px 1px 3px rgba(0,0,0,0.5);}
 .intro-text {font-size:1.15em;line-height:1.5;margin-bottom:25px;text-align:center;}
-.donate-buttons button {
-  background:#ff9800;border:none;padding:14px 22px;margin:6px;font-size:18px;color:white;
-  cursor:pointer;border-radius:8px;font-weight:bold;text-shadow:1px 1px 2px rgba(0,0,0,0.3);
-}
+.donate-buttons button {background:#ff9800;border:none;padding:14px 22px;margin:6px;font-size:18px;color:white;cursor:pointer;border-radius:8px;font-weight:bold;text-shadow:1px 1px 2px rgba(0,0,0,0.3);}
 .donate-buttons button:hover {background:#e68900;}
 details {margin:20px 0;padding:15px;background: rgba(255,255,255,0.7);border-radius:8px;text-align:left;cursor:pointer;}
 details[open]{background: rgba(255,255,255,0.9);}
-summary{font-size:1.2em;font-weight:bold;}
-details p{margin:10px 0 0;}
-.highlight{font-weight:bold;color:#b30000;margin:15px 0;}
-.share-buttons{margin-top:14px;font-size:0.98em;font-weight:bold;}
-.share-buttons a{margin:0 8px;text-decoration:none;}
+summary {font-size:1.2em;font-weight:bold;}
+details p {margin:10px 0 0;}
+.highlight {font-weight:bold;color:#b30000;margin:15px 0;}
+.share-buttons {margin-top:14px;font-size:0.98em;font-weight:bold;}
+.share-buttons a {margin:0 8px;text-decoration:none;}
 .share-buttons a:hover{text-decoration:underline;}
-.footer{margin-top:20px;font-size:0.9em;color:#333;text-shadow:1px 1px 2px rgba(255,255,255,0.5);}
-.language-selector {
-  display:flex; justify-content:center; align-items:center; gap:10px; margin-bottom:15px;
-}
+.footer {margin-top:20px;font-size:0.9em;color:#333;text-shadow:1px 1px 2px rgba(255,255,255,0.5);}
+.language-selector {display:flex; justify-content:center; align-items:center; gap:10px; margin-bottom:15px;}
 .language-selector img {width:32px; height:auto; cursor:pointer; border-radius:4px; transition: transform 0.2s;}
 .language-selector img:hover {transform: scale(1.1);}
 .language-selector span {margin-right:10px; font-weight:bold;}
@@ -53,13 +41,13 @@ details p{margin:10px 0 0;}
 <div class="container">
 <div class="language-selector">
 <span>🌍 Language:</span>
-<a href="index.html"><img src="https://upload.wikimedia.org/wikipedia/en/a/aa/Flag_of_the_United_Kingdom.png" alt="English"></a>
-<a href="de.html"><img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.png" alt="Deutsch"></a>
-<a href="fr.html"><img src="https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.png" alt="Français"></a>
-<a href="uk.html"><img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Ukraine.svg" alt="Українська"></a>
-<a href="hu.html"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Flag_of_Hungary.svg" alt="Magyar"></a>
-<a href="ja.html"><img src="https://upload.wikimedia.org/wikipedia/en/9/9e/Flag_of_Japan.png" alt="日本語"></a>
-<a href="es.html"><img src="https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.png" alt="Español"></a>
+<a href="index.html"><img src="https://cdn.jsdelivr.net/npm/flag-icons@6.6.6/flags/4x3/gb.svg" alt="English"></a>
+<a href="de.html"><img src="https://cdn.jsdelivr.net/npm/flag-icons@6.6.6/flags/4x3/de.svg" alt="Deutsch"></a>
+<a href="fr.html"><img src="https://cdn.jsdelivr.net/npm/flag-icons@6.6.6/flags/4x3/fr.svg" alt="Français"></a>
+<a href="uk.html"><img src="https://cdn.jsdelivr.net/npm/flag-icons@6.6.6/flags/4x3/ua.svg" alt="Українська"></a>
+<a href="hu.html"><img src="https://cdn.jsdelivr.net/npm/flag-icons@6.6.6/flags/4x3/hu.svg" alt="Magyar"></a>
+<a href="ja.html"><img src="https://cdn.jsdelivr.net/npm/flag-icons@6.6.6/flags/4x3/jp.svg" alt="日本語"></a>
+<a href="es.html"><img src="https://cdn.jsdelivr.net/npm/flag-icons@6.6.6/flags/4x3/es.svg" alt="Español"></a>
 </div>
 
 <h1>Support Children in Need 🌍</h1>
