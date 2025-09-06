@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>子供たちを支援するために寄付する</title>
+  <meta name="description" content="世界中の子供たちを助けましょう。1€、2€、5€または任意の金額で希望、食事、教育を提供できます。">
+  <meta name="keywords" content="
+子供 寄付, 子供 支援, チャリティ, 孤児支援, 子供 救済,
+children donation, help kids, child support charity, donate for children,
+戦争, ウクライナ, ロシア, 紛争, 難民, 人道支援,
+news, ニュース, noticias, nouvelles, Nachrichten, hírek, новини,
+charity, donation, support children, education, healthcare
+">
+  <meta name="author" content="Child Support Campaign">
+  <script src="https://js.stripe.com/v3/"></script>
+  <style>
+    body {margin:0; padding:0; font-family: Arial, sans-serif; background:url('/background.jpg') no-repeat center center/cover; color:#000;}
+    .overlay {background: rgba(255,255,255,0.85); padding:30px; border-radius:12px; margin:40px auto; max-width:800px; box-shadow:0 8px 30px rgba(0,0,0,0.18);}
+    h1{text-align:center;}
+    p{line-height:1.5;}
+    .flags{text-align:center;margin-bottom:20px;}
+    .flags a{margin:0 5px;text-decoration:none;font-size:24px;}
+    .donate-buttons{text-align:center;margin:20px 0;}
+    button{background:#ff9800;border:none;padding:12px 20px;margin:6px;font-size:16px;color:white;cursor:pointer;border-radius:8px;font-weight:bold;}
+    button:hover{background:#e68900;}
+    details{margin:15px 0;padding:12px;background:rgba(255,255,255,0.9);border-radius:8px;cursor:pointer;}
+    summary{font-size:1.15em;font-weight:bold;}
+    .share-buttons{text-align:center;margin-top:10px;font-size:1em;}
+    .share-buttons a{margin:0 8px;text-decoration:none;}
+    .share-buttons a:hover{text-decoration:underline;}
+    .highlight{font-weight:bold;color:#b30000;}
+    .footer{text-align:center;margin-top:20px;font-size:0.9em;color:#333;}
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <div class="flags">
+      🌍 言語:
+      <a href="index.html">🇬🇧</a>
+      <a href="de.html">🇩🇪</a>
+      <a href="fr.html">🇫🇷</a>
+      <a href="uk.html">🇺🇦</a>
+      <a href="hu.html">🇭🇺</a>
+      <a href="ja.html">🇯🇵</a>
+      <a href="es.html">🇪🇸</a>
+    </div>
+
+    <h1>困っている子供たちを支援 🌍</h1>
+    <p>何百万人もの子供たちが十分な食事、住居、教育を受けられずに暮らしています。<br>
+       1€、2€、5€の寄付で希望とケア、明るい未来を届けることができます。</p>
+
+    <div class="donate-buttons">
+      <button onclick="donate(1)">1 € 寄付</button>
+      <button onclick="donate(2)">2 € 寄付</button>
+      <button onclick="donate(5)">5 € 寄付</button>
+      <button onclick="customDonate()">任意の金額</button>
+    </div>
+
+    <p class="highlight">紛争で被害を受けた子供たちのために安全な孤児院を建設するお手伝いをしてください。1ユーロで保護とケアを提供できます。</p>
+
+    <p><strong>すでに <span id="meals-count">12,874</span> 人の子供たちを支援しました</strong></p>
+
+    <details>
+      <summary>私たちのミッション 🎓🍎</summary>
+      <p>2017年から、世界中の子供たちの生活向上に取り組んでいます。40か国以上で25,000人以上のボランティアが教育、食事、ケアを提供しています。</p>
+      <p>すでに100万人以上の子供たちに学校、食事、医療を届けました。</p>
+    </details>
+
+    <details>
+      <summary>寄付の使い道 💝</summary>
+      <p>45％ 食事や日常の食事、35％ 教育、20％ 医療・緊急支援に使用されます。</p>
+      <p>1ユーロの寄付でも、世界中の子供たちの生活が変わります。</p>
+    </details>
+
+    <details>
+      <summary>信頼と安全 🔒</summary>
+      <p>Vercelでホスティング、SSL暗号化済み。Stripeによる安全な支払い。すべてのキャンペーンは透明性を確認済みです。</p>
+    </details>
+
+    <div class="share-buttons">
+      共有 ❤️:
+      <a id="share-fb" href="#" target="_blank">🌐 Facebook</a>
+      <a id="share-x" href="#" target="_blank">🐦 X</a>
+      <a id="share-ig" href="https://www.instagram.com/" target="_blank">📸 Instagram</a>
+      <a id="share-mail" href="#" target="_blank">✉️ Email</a>
+    </div>
+
+    <div class="footer">© 2025 Child Support Campaign. All rights reserved.</div>
+  </div>
+
+  <script>
+    const stripe = Stripe("pk_live_51S0zyXDyLtejYlZixEqmlIwnOSQ4yxGGvR2i5eulXNtmKnpeAIgXETXm3FNm8E4XSgeSnyeWboG5CHWJnLccnagx004MPoq1n1");
+
+    async function donate(amount) {
+      const resp = await fetch("/api/create-checkout-session", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({amount})
+      });
+      const data = await resp.json();
+      stripe.redirectToCheckout({ sessionId: data.id });
+    }
+
+    async function customDonate() {
+      const amount = prompt("寄付する金額を入力してください (€):");
+      if (!amount || isNaN(amount) || amount <= 0) { alert("有効な金額を入力してください。"); return; }
+      const resp = await fetch("/api/create-checkout-session", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({amount: parseInt(amount, 10)})
+      });
+      const data = await resp.json();
+      stripe.redirectToCheckout({ sessionId: data.id });
+    }
+
+    (function(){
+      const url = encodeURIComponent(window.location.href);
+      const text = encodeURIComponent("困っている子供たちを支援して、違いを生み出しましょう。");
+      document.getElementById("share-fb").href = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+      document.getElementById("share-x").href = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
+      document.getElementById("share-mail").href = `mailto:?subject=子供支援&body=${text}%20%0A${url}`;
+    })();
+  </script>
+</body>
+</html>
