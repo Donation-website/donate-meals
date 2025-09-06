@@ -1,86 +1,63 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Spenden, um Kindern in Not zu helfen</title>
-  <meta name="description" content="Helfen Sie Kindern weltweit mit einer Spende. 1€, 2€, 5€ oder einen beliebigen Betrag können Hoffnung, Nahrung und Bildung bringen.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unterstützen Sie Kinder in Not</title>
+  <meta name="description" content="Unterstützen Sie Kinder weltweit in Not. Spenden Sie, um Bildung, Nahrung und medizinische Versorgung zu ermöglichen.">
   <meta name="keywords" content="
-kinder spende, hilfe für kinder, wohltätigkeit, kinderhilfe, waisenhilfe, kinder retten,
-gyermek adomány, árvaház támogatás, jótékonyság,
-krieg, Ukraine, Russland, konflikt, flüchtlinge, Kinder im Konflikt, humanitäre Hilfe,
-news, nachrichten, nouvelles, ニュース, hírek, новини,
-charity, donation, support children, education, healthcare
+kinder spenden, hilfe kinder, wohltätigkeit, spende für kinder, waisenhilfe, kinder retten,
+children donation, help kids, child support charity, donate for children,
+enfants, don, aide aux enfants, apoyo niños, aiuto bambini, 子供, 寄付,
+news, wetter, fußball, musik, spiele, einkaufen, reisen, technologie, gesundheit, filme
 ">
-  <meta name="author" content="Child Support Campaign">
-  <script src="https://js.stripe.com/v3/"></script>
-  <style>
-    body {margin:0; padding:0; font-family: Arial, sans-serif; background:url('/background.jpg') no-repeat center center/cover; color:#000;}
-    .overlay {background: rgba(255,255,255,0.85); padding:30px; border-radius:12px; margin:40px auto; max-width:800px; box-shadow:0 8px 30px rgba(0,0,0,0.18);}
-    h1{text-align:center;}
-    p{line-height:1.5;}
-    .flags{text-align:center;margin-bottom:20px;}
-    .flags a{margin:0 5px;text-decoration:none;font-size:24px;}
-    .donate-buttons{text-align:center;margin:20px 0;}
-    button{background:#ff9800;border:none;padding:12px 20px;margin:6px;font-size:16px;color:white;cursor:pointer;border-radius:8px;font-weight:bold;}
-    button:hover{background:#e68900;}
-    details{margin:15px 0;padding:12px;background:rgba(255,255,255,0.9);border-radius:8px;cursor:pointer;}
-    summary{font-size:1.15em;font-weight:bold;}
-    .share-buttons{text-align:center;margin-top:10px;font-size:1em;}
-    .share-buttons a{margin:0 8px;text-decoration:none;}
-    .share-buttons a:hover{text-decoration:underline;}
-    .highlight{font-weight:bold;color:#b30000;}
-    .footer{text-align:center;margin-top:20px;font-size:0.9em;color:#333;}
-  </style>
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="overlay">
-    <!-- Language selection -->
-    <div class="flags">
+  <div class="container">
+    <div class="language-selector">
       🌍 Sprache:
-      <a href="index.html">🇬🇧</a>
-      <a href="de.html">🇩🇪</a>
-      <a href="fr.html">🇫🇷</a>
-      <a href="uk.html">🇺🇦</a>
-      <a href="hu.html">🇭🇺</a>
-      <a href="ja.html">🇯🇵</a>
-      <a href="es.html">🇪🇸</a>
+      <a href="index.html"><img src="flags/en.png" alt="English" width="32"></a>
+      <a href="de.html"><img src="flags/de.png" alt="Deutsch" width="32"></a>
+      <a href="fr.html"><img src="flags/fr.png" alt="Français" width="32"></a>
+      <a href="uk.html"><img src="flags/uk.png" alt="Українська" width="32"></a>
+      <a href="hu.html"><img src="flags/hu.png" alt="Magyar" width="32"></a>
+      <a href="ja.html"><img src="flags/ja.png" alt="日本語" width="32"></a>
+      <a href="es.html"><img src="flags/es.png" alt="Español" width="32"></a>
     </div>
 
     <h1>Unterstützen Sie Kinder in Not 🌍</h1>
-    <p>Millionen Kinder haben keinen Zugang zu Nahrung, Unterkunft oder Bildung.<br>
-       Ihre Spende von 1 €, 2 € oder 5 € kann Hoffnung, Fürsorge und eine bessere Zukunft bringen.</p>
+    <p class="intro-text">Millionen Kinder leben ohne ausreichende Nahrung, Unterkunft oder Bildung.<br>
+    Ihre Spende von 1 €, 2 € oder 5 € kann Hoffnung, Pflege und eine bessere Zukunft bieten.</p>
 
     <div class="donate-buttons">
-      <button onclick="donate(1)">1 € spenden</button>
-      <button onclick="donate(2)">2 € spenden</button>
-      <button onclick="donate(5)">5 € spenden</button>
+      <button onclick="donate(1)">Spenden Sie 1 €</button>
+      <button onclick="donate(2)">Spenden Sie 2 €</button>
+      <button onclick="donate(5)">Spenden Sie 5 €</button>
       <button onclick="customDonate()">Eigenen Betrag spenden</button>
     </div>
 
-    <p class="highlight">Helfen Sie uns, sichere Waisenhäuser für Kinder in Konfliktgebieten zu bauen. Jeder Euro bringt Schutz und Fürsorge.</p>
+    <p class="highlight">Helfen Sie uns, sichere Unterkünfte für von Konflikten betroffene Kinder zu bauen.</p>
+    <p><strong>Wir haben bereits <span id="meals-count">12.874</span> Kindern geholfen</strong></p>
 
-    <p><strong>Bereits <span id="meals-count">12,874</span> Kindern geholfen</strong></p>
-
-    <!-- Accordion sections -->
     <details>
       <summary>Unsere Mission 🎓🍎</summary>
-      <p>Seit 2017 engagieren wir uns für die Verbesserung des Lebens von Kindern weltweit. Mit über 25.000 Freiwilligen in 40 Ländern bieten wir Bildung, Ernährung und Fürsorge.</p>
-      <p>Wir haben bereits über 1 Million Kinder erreicht und ihnen Zugang zu Schule, Mahlzeiten und medizinischer Versorgung ermöglicht.</p>
+      <p>Seit 2017 verbessern wir das Leben von Kindern weltweit. Über 25.000 Freiwillige in 40 Ländern bieten Bildung, Nahrung und Pflege.</p>
+      <p>Wir haben bereits über 1 Million Kindern durch Bildung, Nahrung und medizinische Versorgung geholfen.</p>
     </details>
 
     <details>
-      <summary>Wie Spenden verwendet werden 💝</summary>
-      <p>45% für Lebensmittel und tägliche Mahlzeiten, 35% für Bildung, 20% für medizinische Versorgung und Notfallhilfe.</p>
+      <summary>Verwendung der Spenden 💝</summary>
+      <p>45% für Ernährung, 35% für Bildung, 20% für medizinische Versorgung und Notfallhilfe.</p>
       <p>Jeder Euro zählt. Ihre Unterstützung verändert Leben weltweit.</p>
     </details>
 
     <details>
-      <summary>Vertrauen & Sicherheit 🔒</summary>
-      <p>Gehostet auf Vercel mit SSL-Verschlüsselung. Stripe sorgt für sichere Zahlungen. Alle Kampagnen sind auf Transparenz überprüft.</p>
+      <summary>Vertrauen und Sicherheit 🔒</summary>
+      <p>Die Seite wird auf Vercel gehostet mit SSL. Stripe sorgt für sichere Zahlungen. Alle Kampagnen werden geprüft.</p>
     </details>
 
-    <!-- Share buttons -->
     <div class="share-buttons">
       Teilen ❤️:
       <a id="share-fb" href="#" target="_blank">🌐 Facebook</a>
@@ -92,13 +69,14 @@ charity, donation, support children, education, healthcare
     <div class="footer">© 2025 Child Support Campaign. Alle Rechte vorbehalten.</div>
   </div>
 
+  <script src="https://js.stripe.com/v3/"></script>
   <script>
     const stripe = Stripe("pk_live_51S0zyXDyLtejYlZixEqmlIwnOSQ4yxGGvR2i5eulXNtmKnpeAIgXETXm3FNm8E4XSgeSnyeWboG5CHWJnLccnagx004MPoq1n1");
 
     async function donate(amount) {
       const resp = await fetch("/api/create-checkout-session", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
         body: JSON.stringify({amount})
       });
       const data = await resp.json();
@@ -106,25 +84,44 @@ charity, donation, support children, education, healthcare
     }
 
     async function customDonate() {
-      const amount = prompt("Bitte geben Sie den Spendenbetrag (€) ein:");
-      if (!amount || isNaN(amount) || amount <= 0) { alert("Bitte geben Sie einen gültigen Betrag ein."); return; }
+      const amount = prompt("Geben Sie den Betrag (€) ein:");
+      if (!amount || isNaN(amount) || amount <= 0) { alert("Bitte einen gültigen Betrag eingeben."); return; }
       const resp = await fetch("/api/create-checkout-session", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({amount: parseInt(amount, 10)})
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({amount: parseInt(amount,10)})
       });
       const data = await resp.json();
       stripe.redirectToCheckout({ sessionId: data.id });
     }
 
-    // Share links
     (function(){
       const url = encodeURIComponent(window.location.href);
       const text = encodeURIComponent("Unterstützen Sie Kinder in Not und machen Sie einen Unterschied.");
       document.getElementById("share-fb").href = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
       document.getElementById("share-x").href = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
-      document.getElementById("share-mail").href = `mailto:?subject=Kinder unterstützen&body=${text}%20%0A${url}`;
+      document.getElementById("share-mail").href = `mailto:?subject=Unterstützen Sie Kinder&body=${text}%20%0A${url}`;
     })();
   </script>
+
+  <style>
+    body {margin:0;padding:0;font-family:Arial,sans-serif;background:url("/background.jpg") no-repeat center center/cover;color:#000;text-align:center;}
+    .container {background: rgba(255,255,255,0.6); padding:40px; border-radius:12px; margin:60px auto; max-width:640px; box-shadow:0 0 20px rgba(0,0,0,0.2);}
+    h1 {font-size:2.2em;margin-bottom:20px;text-shadow:1px 1px 3px rgba(0,0,0,0.5);}
+    .intro-text {font-size:1.15em; line-height:1.5; margin-bottom:25px; text-align:center;}
+    .donate-buttons button {background:#ff9800;border:none;padding:14px 22px;margin:6px;font-size:18px;color:white;cursor:pointer;border-radius:8px;font-weight:bold;text-shadow:1px 1px 2px rgba(0,0,0,0.3);}
+    .donate-buttons button:hover {background:#e68900;}
+    details {margin:20px 0;padding:15px;background: rgba(255,255,255,0.7);border-radius:8px;text-align:left;cursor:pointer;}
+    details[open] {background: rgba(255,255,255,0.9);}
+    summary {font-size:1.2em;font-weight:bold;}
+    details p {margin:10px 0 0;}
+    .highlight {font-weight:bold;color:#b30000;margin:15px 0;}
+    .share-buttons {margin-top:14px;font-size:0.98em;font-weight:bold;}
+    .share-buttons a {margin:0 8px;text-decoration:none;}
+    .share-buttons a:hover {text-decoration:underline;}
+    .footer {margin-top:20px;font-size:0.9em;color:#333;text-shadow:1px 1px 2px rgba(255,255,255,0.5);}
+    .language-selector img {margin:0 5px; vertical-align:middle; cursor:pointer; border-radius:4px; transition:transform 0.2s;}
+    .language-selector img:hover {transform: scale(1.1);}
+  </style>
 </body>
 </html>
