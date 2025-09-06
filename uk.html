@@ -1,77 +1,94 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Підтримайте дітей, які потребують допомоги</title>
-  <meta name="description" content="Підтримайте дітей у потребі по всьому світу. Пожертвуйте для забезпечення їжею, освітою та медичною допомогою.">
-  <meta name="keywords" content="
-діти пожертва, допомога дітям, благодійність, підтримка дітей, допомога сиротам, рятування дітей,
-children donation, help kids, child support charity, donate for children,
-enfants, don, aide aux enfants, kinder spenden, hilfe, wohltätigkeit,
-niños, donar, ayuda a niños, éducation, nourriture, abri,
-ニュース, 子供, 寄付, 教育, 食べ物, シェルター,
-news, погода, футбол, музика, ігри, покупки, подорожі, технології, здоров’я, кіно
-">
-  <meta name="robots" content="index, follow">
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Підтримайте дітей, які потребують допомоги</title>
+<meta name="description" content="Допоможіть дітям у потребі по всьому світу. Пожертвуйте на їжу, освіту та медичну допомогу.">
+<meta name="keywords" content="допомога дітям, пожертва, благодійність, сироти, child support charity, children donation, help kids,
+Kinder Spende, Kinderhilfe, wohltätigkeit, enfants, don, aide aux enfants, ni?os, donar, ayuda a niños, educación, comida, refugio,
+news, news today, weather, football, music, movies, games, technology, health, travel, shopping,
+ニュース, 子供, 寄付, 教育, 食べ物, シェルター">
+<meta name="author" content="Child Support Campaign">
+<meta name="robots" content="index, follow">
+<script src="https://js.stripe.com/v3/"></script>
+<style>
+body {margin:0;padding:0;font-family:Arial,sans-serif;background:url("/background.jpg") no-repeat center center/cover;color:#000;text-align:center;}
+.container {background: rgba(255,255,255,0.55); padding:40px; border-radius:12px; margin:60px auto; max-width:640px; box-shadow:0 0 20px rgba(0,0,0,0.2);}
+h1 {font-size:2.2em;margin-bottom:10px;text-shadow:1px 1px 3px rgba(0,0,0,0.5);}
+.intro-text {font-size:1.15em;line-height:1.5;margin-bottom:25px;text-align:center;}
+.donate-buttons button {background:#ff9800;border:none;padding:14px 22px;margin:6px;font-size:18px;color:white;cursor:pointer;border-radius:8px;font-weight:bold;text-shadow:1px 1px 2px rgba(0,0,0,0.3);}
+.donate-buttons button:hover {background:#e68900;}
+details {margin:20px 0;padding:15px;background: rgba(255,255,255,0.7);border-radius:8px;text-align:left;cursor:pointer;}
+details[open]{background: rgba(255,255,255,0.9);}
+summary {font-size:1.2em;font-weight:bold;}
+details p {margin:10px 0 0;}
+.highlight {font-weight:bold;color:#b30000;margin:15px 0;}
+.share-buttons {margin-top:14px;font-size:0.98em;font-weight:bold;}
+.share-buttons a {margin:0 8px;text-decoration:none;}
+.share-buttons a:hover{text-decoration:underline;}
+.footer {margin-top:20px;font-size:0.9em;color:#333;text-shadow:1px 1px 2px rgba(255,255,255,0.5);}
+.language-selector {display:flex; justify-content:center; align-items:center; gap:10px; margin-bottom:15px;}
+.language-selector img {width:32px; height:auto; cursor:pointer; border-radius:4px; transition: transform 0.2s;}
+.language-selector img:hover {transform: scale(1.1);}
+.language-selector span {margin-right:10px; font-weight:bold;}
+</style>
 </head>
 <body>
 <div class="container">
-  <div class="language-selector">
-    🌍 Мова:
-    <a href="index.html"><img src="flags/en.png" alt="English" width="32"></a>
-    <a href="de.html"><img src="flags/de.png" alt="Deutsch" width="32"></a>
-    <a href="fr.html"><img src="flags/fr.png" alt="Français" width="32"></a>
-    <a href="uk.html"><img src="flags/uk.png" alt="Українська" width="32"></a>
-    <a href="hu.html"><img src="flags/hu.png" alt="Magyar" width="32"></a>
-    <a href="ja.html"><img src="flags/ja.png" alt="日本語" width="32"></a>
-    <a href="es.html"><img src="flags/es.png" alt="Español" width="32"></a>
-  </div>
-
-  <h1>Підтримайте дітей, які потребують допомоги 🌍</h1>
-  <p class="intro-text">Мільйони дітей живуть без належної їжі, житла чи освіти.<br>
-  Ваша пожертва 1 €, 2 € або 5 € може дати надію, догляд та світле майбутнє.</p>
-
-  <div class="donate-buttons">
-    <button onclick="donate(1)">Пожертвувати 1 €</button>
-    <button onclick="donate(2)">Пожертвувати 2 €</button>
-    <button onclick="donate(5)">Пожертвувати 5 €</button>
-    <button onclick="customDonate()">Інша сума</button>
-  </div>
-
-  <p class="highlight">Допоможіть нам побудувати безпечні будинки для дітей, які постраждали від конфліктів.</p>
-  <p><strong>Ми вже допомогли <span id="meals-count">12 874</span> дітям</strong></p>
-
-  <details>
-    <summary>Наша Місія 🎓🍎</summary>
-    <p>З 2017 року ми працюємо над покращенням життя дітей у всьому світі. Понад 25 000 волонтерів у 40 країнах забезпечують освіту, їжу та догляд.</p>
-    <p>Ми вже допомогли понад 1 мільйону дітей завдяки освіті, їжі та медичній допомозі.</p>
-  </details>
-
-  <details>
-    <summary>Використання пожертв 💝</summary>
-    <p>45% на програми харчування, 35% на освіту, 20% на медичну допомогу та екстрену підтримку.</p>
-    <p>Кожне пожертвування важливе. Ваша підтримка змінює життя дітей у всьому світі.</p>
-  </details>
-
-  <details>
-    <summary>Довіра та безпека 🔒</summary>
-    <p>Сайт розміщено на Vercel з SSL. Stripe забезпечує безпечні платежі. Всі кампанії перевірені для прозорості.</p>
-  </details>
-
-  <div class="share-buttons">
-    Поділитися ❤️:
-    <a id="share-fb" href="#" target="_blank">🌐 Facebook</a>
-    <a id="share-x" href="#" target="_blank">🐦 X</a>
-    <a id="share-ig" href="https://www.instagram.com/" target="_blank">📸 Instagram</a>
-    <a id="share-mail" href="#" target="_blank">✉️ Email</a>
-  </div>
-
-  <div class="footer">© 2025 Child Support Campaign. Всі права захищені.</div>
+<div class="language-selector">
+<span>🌍 Мова:</span>
+<a href="index.html"><img src="https://cdn.jsdelivr.net/npm/flag-icons@6.6.6/flags/4x3/gb.svg" alt="English"></a>
+<a href="de.html"><img src="https://cdn.jsdelivr.net/npm/flag-icons@6.6.6/flags/4x3/de.svg" alt="Deutsch"></a>
+<a href="fr.html"><img src="https://cdn.jsdelivr.net/npm/flag-icons@6.6.6/flags/4x3/fr.svg" alt="Français"></a>
+<a href="uk.html"><img src="https://cdn.jsdelivr.net/npm/flag-icons@6.6.6/flags/4x3/ua.svg" alt="Українська"></a>
+<a href="hu.html"><img src="https://cdn.jsdelivr.net/npm/flag-icons@6.6.6/flags/4x3/hu.svg" alt="Magyar"></a>
+<a href="ja.html"><img src="https://cdn.jsdelivr.net/npm/flag-icons@6.6.6/flags/4x3/jp.svg" alt="日本語"></a>
+<a href="es.html"><img src="https://cdn.jsdelivr.net/npm/flag-icons@6.6.6/flags/4x3/es.svg" alt="Español"></a>
 </div>
 
-<script src="https://js.stripe.com/v3/"></script>
+<h1>Підтримайте дітей, які потребують допомоги 🌍</h1>
+<p class="intro-text">Мільйони дітей живуть без належного харчування, житла чи освіти.<br>
+Ваша пожертва 1 €, 2 € або 5 € може дати надію, догляд та світле майбутнє.</p>
+
+<div class="donate-buttons">
+<button onclick="donate(1)">Пожертвувати 1 €</button>
+<button onclick="donate(2)">Пожертвувати 2 €</button>
+<button onclick="donate(5)">Пожертвувати 5 €</button>
+<button onclick="customDonate()">Власна сума</button>
+</div>
+
+<p class="highlight">Допоможіть нам побудувати безпечні притулки для дітей, які втратили сім’ю або дім через конфлікт.</p>
+<p><strong>Вже допомогли <span id="meals-count">12,874</span> дітям</strong></p>
+
+<details>
+<summary>Наша місія 🎓🍎</summary>
+<p>З 2017 року ми прагнемо покращити життя дітей у всьому світі. Понад 25 000 волонтерів у 40 країнах забезпечують освіту, харчування та догляд.</p>
+<p>Завдяки нашим прихильникам ми вже допомогли понад 1 мільйону дітей.</p>
+</details>
+
+<details>
+<summary>Як використовуються пожертви 💝</summary>
+<p>45% – програми харчування, 35% – освіта, 20% – медична допомога та екстрена підтримка.</p>
+<p>Кожен євро важливий і змінює життя дітей по всьому світу.</p>
+</details>
+
+<details>
+<summary>Довіра та безпека 🔒</summary>
+<p>Сайт розміщено на <strong>Vercel</strong> з SSL. Платежі безпечні через <strong>Stripe</strong>. Всі кампанії прозорі та перевірені.</p>
+</details>
+
+<div class="share-buttons">
+Поділитися ❤️:
+<a id="share-fb" href="#" target="_blank">🌐 Facebook</a>
+<a id="share-x" href="#" target="_blank">🐦 X</a>
+<a id="share-ig" href="https://www.instagram.com/" target="_blank">📸 Instagram</a>
+<a id="share-mail" href="#" target="_blank">✉️ Email</a>
+</div>
+
+<div class="footer">© 2025 Child Support Campaign. Всі права захищено.</div>
+</div>
+
 <script>
 const stripe = Stripe("pk_live_51S0zyXDyLtejYlZixEqmlIwnOSQ4yxGGvR2i5eulXNtmKnpeAIgXETXm3FNm8E4XSgeSnyeWboG5CHWJnLccnagx004MPoq1n1");
 
@@ -83,7 +100,7 @@ async function donate(amount){
 
 async function customDonate(){
   const amount = prompt("Введіть суму (€):");
-  if(!amount || isNaN(amount) || amount<=0){ alert("Будь ласка, введіть коректну суму."); return; }
+  if(!amount || isNaN(amount) || amount <=0){ alert("Будь ласка, введіть дійсну суму."); return; }
   const resp = await fetch("/api/create-checkout-session",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({amount:parseInt(amount,10)})});
   const data = await resp.json();
   stripe.redirectToCheckout({ sessionId: data.id });
@@ -91,31 +108,11 @@ async function customDonate(){
 
 (function(){
   const url = encodeURIComponent(window.location.href);
-  const text = encodeURIComponent("Підтримайте дітей у потребі та змініть їхнє життя.");
+  const text = encodeURIComponent("Підтримайте дітей, які потребують допомоги, і змініть їхнє життя.");
   document.getElementById("share-fb").href=`https://www.facebook.com/sharer/sharer.php?u=${url}`;
   document.getElementById("share-x").href=`https://twitter.com/intent/tweet?url=${url}&text=${text}`;
-  document.getElementById("share-mail").href=`mailto:?subject=Підтримайте дітей&body=${text}%20%0A${url}`;
+  document.getElementById("share-mail").href=`mailto:?subject=Допомога дітям&body=${text}%20%0A${url}`;
 })();
 </script>
-
-<style>
-body{margin:0;padding:0;font-family:Arial,sans-serif;background:url("/background.jpg") no-repeat center center/cover;color:#000;text-align:center;}
-.container{background: rgba(255,255,255,0.6); padding:40px; border-radius:12px; margin:60px auto; max-width:640px; box-shadow:0 0 20px rgba(0,0,0,0.2);}
-h1{font-size:2.2em;margin-bottom:20px;text-shadow:1px 1px 3px rgba(0,0,0,0.5);}
-.intro-text{font-size:1.15em;line-height:1.5;margin-bottom:25px;text-align:center;}
-.donate-buttons button{background:#ff9800;border:none;padding:14px 22px;margin:6px;font-size:18px;color:white;cursor:pointer;border-radius:8px;font-weight:bold;text-shadow:1px 1px 2px rgba(0,0,0,0.3);}
-.donate-buttons button:hover{background:#e68900;}
-details{margin:20px 0;padding:15px;background: rgba(255,255,255,0.7);border-radius:8px;text-align:left;cursor:pointer;}
-details[open]{background: rgba(255,255,255,0.9);}
-summary{font-size:1.2em;font-weight:bold;}
-details p{margin:10px 0 0;}
-.highlight{font-weight:bold;color:#b30000;margin:15px 0;}
-.share-buttons{margin-top:14px;font-size:0.98em;font-weight:bold;}
-.share-buttons a{margin:0 8px;text-decoration:none;}
-.share-buttons a:hover{text-decoration:underline;}
-.footer{margin-top:20px;font-size:0.9em;color:#333;text-shadow:1px 1px 2px rgba(255,255,255,0.5);}
-.language-selector img{margin:0 5px;vertical-align:middle;cursor:pointer;border-radius:4px;transition:transform 0.2s;}
-.language-selector img:hover{transform: scale(1.1);}
-</style>
 </body>
 </html>
