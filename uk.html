@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Пожертвуйте на підтримку дітей</title>
+  <meta name="description" content="Допоможіть дітям у всьому світі. 1€, 2€, 5€ або будь-яка сума можуть надати надію, їжу та освіту.">
+  <meta name="keywords" content="
+пожертва дітям, допомога дітям, благодійність, допомога сиротам, збереження дітей,
+children donation, help kids, child support charity, donate for children,
+war, Ukraine, Russia, conflict, refugees, children in conflict, humanitarian aid,
+news, новини, noticias, nouvelles, ニュース, Nachrichten, hírek,
+charity, donation, support children, education, healthcare
+">
+  <meta name="author" content="Child Support Campaign">
+  <script src="https://js.stripe.com/v3/"></script>
+  <style>
+    body {margin:0; padding:0; font-family: Arial, sans-serif; background:url('/background.jpg') no-repeat center center/cover; color:#000;}
+    .overlay {background: rgba(255,255,255,0.85); padding:30px; border-radius:12px; margin:40px auto; max-width:800px; box-shadow:0 8px 30px rgba(0,0,0,0.18);}
+    h1{text-align:center;}
+    p{line-height:1.5;}
+    .flags{text-align:center;margin-bottom:20px;}
+    .flags a{margin:0 5px;text-decoration:none;font-size:24px;}
+    .donate-buttons{text-align:center;margin:20px 0;}
+    button{background:#ff9800;border:none;padding:12px 20px;margin:6px;font-size:16px;color:white;cursor:pointer;border-radius:8px;font-weight:bold;}
+    button:hover{background:#e68900;}
+    details{margin:15px 0;padding:12px;background:rgba(255,255,255,0.9);border-radius:8px;cursor:pointer;}
+    summary{font-size:1.15em;font-weight:bold;}
+    .share-buttons{text-align:center;margin-top:10px;font-size:1em;}
+    .share-buttons a{margin:0 8px;text-decoration:none;}
+    .share-buttons a:hover{text-decoration:underline;}
+    .highlight{font-weight:bold;color:#b30000;}
+    .footer{text-align:center;margin-top:20px;font-size:0.9em;color:#333;}
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <div class="flags">
+      🌍 Мова:
+      <a href="index.html">🇬🇧</a>
+      <a href="de.html">🇩🇪</a>
+      <a href="fr.html">🇫🇷</a>
+      <a href="uk.html">🇺🇦</a>
+      <a href="hu.html">🇭🇺</a>
+      <a href="ja.html">🇯🇵</a>
+      <a href="es.html">🇪🇸</a>
+    </div>
+
+    <h1>Підтримайте дітей, які потребують допомоги 🌍</h1>
+    <p>Мільйони дітей живуть без їжі, притулку та освіти.<br>
+       Ваша пожертва 1 €, 2 € або 5 € може принести надію та турботу.</p>
+
+    <div class="donate-buttons">
+      <button onclick="donate(1)">Пожертвувати 1 €</button>
+      <button onclick="donate(2)">Пожертвувати 2 €</button>
+      <button onclick="donate(5)">Пожертвувати 5 €</button>
+      <button onclick="customDonate()">Власна сума</button>
+    </div>
+
+    <p class="highlight">Допоможіть нам будувати безпечні дитячі будинки для дітей, постраждалих від конфліктів. Кожен євро приносить захист та турботу.</p>
+
+    <p><strong>Вже допомогли <span id="meals-count">12,874</span> дітям</strong></p>
+
+    <details>
+      <summary>Наша місія 🎓🍎</summary>
+      <p>З 2017 року ми працюємо над покращенням життя дітей у всьому світі. Понад 25 000 волонтерів у 40 країнах надають освіту, харчування та допомогу.</p>
+      <p>Ми допомогли понад 1 мільйону дітей отримати освіту, харчування та медичну допомогу.</p>
+    </details>
+
+    <details>
+      <summary>Як використовуються пожертви 💝</summary>
+      <p>45% на їжу та щоденні прийоми їжі, 35% на освіту, 20% на медичну допомогу та надзвичайну допомогу.</p>
+      <p>Кожен євро важливий. Ваша підтримка змінює життя по всьому світу.</p>
+    </details>
+
+    <details>
+      <summary>Довіра та безпека 🔒</summary>
+      <p>Сайт розміщено на Vercel з SSL-шифруванням. Stripe забезпечує безпечні платежі. Усі кампанії перевірені на прозорість.</p>
+    </details>
+
+    <div class="share-buttons">
+      Поділитися ❤️:
+      <a id="share-fb" href="#" target="_blank">🌐 Facebook</a>
+      <a id="share-x" href="#" target="_blank">🐦 X</a>
+      <a id="share-ig" href="https://www.instagram.com/" target="_blank">📸 Instagram</a>
+      <a id="share-mail" href="#" target="_blank">✉️ Email</a>
+    </div>
+
+    <div class="footer">© 2025 Child Support Campaign. Всі права захищені.</div>
+  </div>
+
+  <script>
+    const stripe = Stripe("pk_live_51S0zyXDyLtejYlZixEqmlIwnOSQ4yxGGvR2i5eulXNtmKnpeAIgXETXm3FNm8E4XSgeSnyeWboG5CHWJnLccnagx004MPoq1n1");
+
+    async function donate(amount) {
+      const resp = await fetch("/api/create-checkout-session", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({amount})
+      });
+      const data = await resp.json();
+      stripe.redirectToCheckout({ sessionId: data.id });
+    }
+
+    async function customDonate() {
+      const amount = prompt("Введіть суму (€):");
+      if (!amount || isNaN(amount) || amount <= 0) { alert("Будь ласка, введіть дійсну суму."); return; }
+      const resp = await fetch("/api/create-checkout-session", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({amount: parseInt(amount, 10)})
+      });
+      const data = await resp.json();
+      stripe.redirectToCheckout({ sessionId: data.id });
+    }
+
+    (function(){
+      const url = encodeURIComponent(window.location.href);
+      const text = encodeURIComponent("Підтримайте дітей у потребі та зробіть різницю.");
+      document.getElementById("share-fb").href = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+      document.getElementById("share-x").href = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
+      document.getElementById("share-mail").href = `mailto:?subject=Підтримка дітей&body=${text}%20%0A${url}`;
+    })();
+  </script>
+</body>
+</html>
