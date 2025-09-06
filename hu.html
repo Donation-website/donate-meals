@@ -1,126 +1,121 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Adományozás a rászoruló gyermekekért</title>
-  <meta name="description" content="Segítsen a világ gyermekei számára adománnyal. 1€, 2€, 5€ vagy bármilyen összeg reményt, ételt és oktatást biztosít.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Támogasd a rászoruló gyermekeket</title>
+  <meta name="description" content="Segíts rászoruló gyermekeken világszerte. Adj adományt ételre, oktatásra és egészségügyi ellátásra.">
   <meta name="keywords" content="
-gyermek adomány, segítség a gyerekeknek, jótékonyság, árvaház támogatás, gyermekmentés,
+gyermek adomány, segítség gyerekeknek, jótékonyság, adomány gyermekeknek, árvaház támogatás, gyermekmentés,
 children donation, help kids, child support charity, donate for children,
-háború, Ukrajna, Oroszország, konfliktus, menekültek, humanitárius segítség,
-news, hírek, noticias, nouvelles, ニュース, Nachrichten, новини,
-charity, donation, support children, education, healthcare
+kinder spenden, hilfe, wohltätigkeit, enfants, don, aide aux enfants,
+niños, donar, ayuda a niños, educación, comida, refugio,
+ニュース, 子供, 寄付, 教育, 食べ物, シェルター,
+news, időjárás, foci, zene, játékok, vásárlás, utazás, technológia, egészség, filmek
 ">
-  <meta name="author" content="Child Support Campaign">
-  <script src="https://js.stripe.com/v3/"></script>
-  <style>
-    body {margin:0; padding:0; font-family: Arial, sans-serif; background:url('/background.jpg') no-repeat center center/cover; color:#000;}
-    .overlay {background: rgba(255,255,255,0.85); padding:30px; border-radius:12px; margin:40px auto; max-width:800px; box-shadow:0 8px 30px rgba(0,0,0,0.18);}
-    h1{text-align:center;}
-    p{line-height:1.5;}
-    .flags{text-align:center;margin-bottom:20px;}
-    .flags a{margin:0 5px;text-decoration:none;font-size:24px;}
-    .donate-buttons{text-align:center;margin:20px 0;}
-    button{background:#ff9800;border:none;padding:12px 20px;margin:6px;font-size:16px;color:white;cursor:pointer;border-radius:8px;font-weight:bold;}
-    button:hover{background:#e68900;}
-    details{margin:15px 0;padding:12px;background:rgba(255,255,255,0.9);border-radius:8px;cursor:pointer;}
-    summary{font-size:1.15em;font-weight:bold;}
-    .share-buttons{text-align:center;margin-top:10px;font-size:1em;}
-    .share-buttons a{margin:0 8px;text-decoration:none;}
-    .share-buttons a:hover{text-decoration:underline;}
-    .highlight{font-weight:bold;color:#b30000;}
-    .footer{text-align:center;margin-top:20px;font-size:0.9em;color:#333;}
-  </style>
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="overlay">
-    <div class="flags">
-      🌍 Nyelv:
-      <a href="index.html">🇬🇧</a>
-      <a href="de.html">🇩🇪</a>
-      <a href="fr.html">🇫🇷</a>
-      <a href="uk.html">🇺🇦</a>
-      <a href="hu.html">🇭🇺</a>
-      <a href="ja.html">🇯🇵</a>
-      <a href="es.html">🇪🇸</a>
-    </div>
-
-    <h1>Támogasd a rászoruló gyermekeket 🌍</h1>
-    <p>Milliók élnek megfelelő étel, menedék vagy oktatás nélkül.<br>
-       Az 1 €, 2 € vagy 5 € adomány reményt és támogatást nyújt.</p>
-
-    <div class="donate-buttons">
-      <button onclick="donate(1)">1 € adományozás</button>
-      <button onclick="donate(2)">2 € adományozás</button>
-      <button onclick="donate(5)">5 € adományozás</button>
-      <button onclick="customDonate()">Egyéni összeg</button>
-    </div>
-
-    <p class="highlight">Segíts biztonságos árvaházakat építeni a konfliktusok által érintett gyermekeknek. Minden euró védelmet és gondoskodást jelent.</p>
-
-    <p><strong>Már segítettünk <span id="meals-count">12,874</span> gyermeknek</strong></p>
-
-    <details>
-      <summary>Küldetésünk 🎓🍎</summary>
-      <p>2017 óta elkötelezettek vagyunk a gyermekek életének javítása iránt világszerte. Több mint 25 000 önkéntes 40 országban biztosít oktatást, étkezést és gondoskodást.</p>
-      <p>Már több mint 1 millió gyermekhez jutottunk el, biztosítva az iskolát, ételt és egészségügyi ellátást.</p>
-    </details>
-
-    <details>
-      <summary>Hogyan használjuk a támogatást 💝</summary>
-      <p>45% étkezésre, 35% oktatásra, 20% orvosi ellátásra és vészhelyzeti segítségre.</p>
-      <p>Minden euró számít. A támogatásod életeket változtat meg világszerte.</p>
-    </details>
-
-    <details>
-      <summary>Biztonság és megbízhatóság 🔒</summary>
-      <p>Az oldal Vercel-en van hosztolva SSL titkosítással. Stripe biztosítja a biztonságos fizetést. Minden kampány ellenőrzött és átlátható.</p>
-    </details>
-
-    <div class="share-buttons">
-      Megosztás ❤️:
-      <a id="share-fb" href="#" target="_blank">🌐 Facebook</a>
-      <a id="share-x" href="#" target="_blank">🐦 X</a>
-      <a id="share-ig" href="https://www.instagram.com/" target="_blank">📸 Instagram</a>
-      <a id="share-mail" href="#" target="_blank">✉️ Email</a>
-    </div>
-
-    <div class="footer">© 2025 Child Support Campaign. Minden jog fenntartva.</div>
+<div class="container">
+  <div class="language-selector">
+    🌍 Nyelv:
+    <a href="index.html"><img src="flags/en.png" alt="English" width="32"></a>
+    <a href="de.html"><img src="flags/de.png" alt="Deutsch" width="32"></a>
+    <a href="fr.html"><img src="flags/fr.png" alt="Français" width="32"></a>
+    <a href="uk.html"><img src="flags/uk.png" alt="Українська" width="32"></a>
+    <a href="hu.html"><img src="flags/hu.png" alt="Magyar" width="32"></a>
+    <a href="ja.html"><img src="flags/ja.png" alt="日本語" width="32"></a>
+    <a href="es.html"><img src="flags/es.png" alt="Español" width="32"></a>
   </div>
 
-  <script>
-    const stripe = Stripe("pk_live_51S0zyXDyLtejYlZixEqmlIwnOSQ4yxGGvR2i5eulXNtmKnpeAIgXETXm3FNm8E4XSgeSnyeWboG5CHWJnLccnagx004MPoq1n1");
+  <h1>Támogasd a rászoruló gyermekeket 🌍</h1>
+  <p class="intro-text">Milliók élnek megfelelő étel, otthon vagy oktatás nélkül.<br>
+  1 €, 2 € vagy 5 € adományoddal reményt, gondoskodást és fényesebb jövőt adhatsz.</p>
 
-    async function donate(amount) {
-      const resp = await fetch("/api/create-checkout-session", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({amount})
-      });
-      const data = await resp.json();
-      stripe.redirectToCheckout({ sessionId: data.id });
-    }
+  <div class="donate-buttons">
+    <button onclick="donate(1)">Adományozz 1 €</button>
+    <button onclick="donate(2)">Adományozz 2 €</button>
+    <button onclick="donate(5)">Adományozz 5 €</button>
+    <button onclick="customDonate()">Egyéni összeg</button>
+  </div>
 
-    async function customDonate() {
-      const amount = prompt("Add meg a kívánt összeget (€):");
-      if (!amount || isNaN(amount) || amount <= 0) { alert("Kérlek, adj meg egy érvényes összeget."); return; }
-      const resp = await fetch("/api/create-checkout-session", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({amount: parseInt(amount, 10)})
-      });
-      const data = await resp.json();
-      stripe.redirectToCheckout({ sessionId: data.id });
-    }
+  <p class="highlight">Segíts biztonságos otthonokat építeni a konfliktusoktól szenvedő gyermekeknek.</p>
+  <p><strong>Már <span id="meals-count">12 874</span> gyermeknek segítettünk</strong></p>
 
-    (function(){
-      const url = encodeURIComponent(window.location.href);
-      const text = encodeURIComponent("Támogasd a rászoruló gyermekeket és tegyél különbséget.");
-      document.getElementById("share-fb").href = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-      document.getElementById("share-x").href = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
-      document.getElementById("share-mail").href = `mailto:?subject=Gyermekek támogatása&body=${text}%20%0A${url}`;
-    })();
-  </script>
+  <details>
+    <summary>Missziónk 🎓🍎</summary>
+    <p>2017 óta dolgozunk a gyermekek életének javításán világszerte. Több mint 25 000 önkéntes 40 országban biztosít oktatást, ételt és gondoskodást.</p>
+    <p>Már több mint 1 millió gyermeknek segítettünk oktatásban, étkezésben és egészségügyi ellátásban.</p>
+  </details>
+
+  <details>
+    <summary>Hogyan használjuk a támogatást 💝</summary>
+    <p>45% étkezési programokra, 35% oktatásra, 20% orvosi ellátásra és sürgősségi segítségre.</p>
+    <p>Minden euró számít. Támogatásod életet változtat a gyermekek számára világszerte.</p>
+  </details>
+
+  <details>
+    <summary>Biztonság és megbízhatóság 🔒</summary>
+    <p>Az oldal Vercel-en van hosztolva SSL-lel. Stripe biztosítja a biztonságos fizetést. Minden kampány átlátható és ellenőrzött.</p>
+  </details>
+
+  <div class="share-buttons">
+    Megosztás ❤️:
+    <a id="share-fb" href="#" target="_blank">🌐 Facebook</a>
+    <a id="share-x" href="#" target="_blank">🐦 X</a>
+    <a id="share-ig" href="https://www.instagram.com/" target="_blank">📸 Instagram</a>
+    <a id="share-mail" href="#" target="_blank">✉️ Email</a>
+  </div>
+
+  <div class="footer">© 2025 Child Support Campaign. Minden jog fenntartva.</div>
+</div>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+const stripe = Stripe("pk_live_51S0zyXDyLtejYlZixEqmlIwnOSQ4yxGGvR2i5eulXNtmKnpeAIgXETXm3FNm8E4XSgeSnyeWboG5CHWJnLccnagx004MPoq1n1");
+
+async function donate(amount){
+  const resp = await fetch("/api/create-checkout-session",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({amount})});
+  const data = await resp.json();
+  stripe.redirectToCheckout({ sessionId: data.id });
+}
+
+async function customDonate(){
+  const amount = prompt("Add meg az összeget (€):");
+  if(!amount || isNaN(amount) || amount<=0){ alert("Kérlek adj meg érvényes összeget."); return; }
+  const resp = await fetch("/api/create-checkout-session",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({amount:parseInt(amount,10)})});
+  const data = await resp.json();
+  stripe.redirectToCheckout({ sessionId: data.id });
+}
+
+(function(){
+  const url = encodeURIComponent(window.location.href);
+  const text = encodeURIComponent("Támogasd a rászoruló gyermekeket és változtass az életükön.");
+  document.getElementById("share-fb").href=`https://www.facebook.com/sharer/sharer.php?u=${url}`;
+  document.getElementById("share-x").href=`https://twitter.com/intent/tweet?url=${url}&text=${text}`;
+  document.getElementById("share-mail").href=`mailto:?subject=Támogasd a gyermekeket&body=${text}%20%0A${url}`;
+})();
+</script>
+
+<style>
+body{margin:0;padding:0;font-family:Arial,sans-serif;background:url("/background.jpg") no-repeat center center/cover;color:#000;text-align:center;}
+.container{background: rgba(255,255,255,0.6); padding:40px; border-radius:12px; margin:60px auto; max-width:640px; box-shadow:0 0 20px rgba(0,0,0,0.2);}
+h1{font-size:2.2em;margin-bottom:20px;text-shadow:1px 1px 3px rgba(0,0,0,0.5);}
+.intro-text{font-size:1.15em;line-height:1.5;margin-bottom:25px;text-align:center;}
+.donate-buttons button{background:#ff9800;border:none;padding:14px 22px;margin:6px;font-size:18px;color:white;cursor:pointer;border-radius:8px;font-weight:bold;text-shadow:1px 1px 2px rgba(0,0,0,0.3);}
+.donate-buttons button:hover{background:#e68900;}
+details{margin:20px 0;padding:15px;background: rgba(255,255,255,0.7);border-radius:8px;text-align:left;cursor:pointer;}
+details[open]{background: rgba(255,255,255,0.9);}
+summary{font-size:1.2em;font-weight:bold;}
+details p{margin:10px 0 0;}
+.highlight{font-weight:bold;color:#b30000;margin:15px 0;}
+.share-buttons{margin-top:14px;font-size:0.98em;font-weight:bold;}
+.share-buttons a{margin:0 8px;text-decoration:none;}
+.share-buttons a:hover{text-decoration:underline;}
+.footer{margin-top:20px;font-size:0.9em;color:#333;text-shadow:1px 1px 2px rgba(255,255,255,0.5);}
+.language-selector img{margin:0 5px;vertical-align:middle;cursor:pointer;border-radius:4px;transition:transform 0.2s;}
+.language-selector img:hover{transform: scale(1.1);}
+</style>
 </body>
 </html>
